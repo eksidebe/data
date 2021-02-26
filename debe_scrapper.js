@@ -3,12 +3,32 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 const baseURL = 'https://eksisozluk.com';
+let retry = 0;
+
+axios.interceptors.response.use((response) => {
+    retry = 0;
+    return response;
+}, (error) => {
+    if (retry < 3) {
+        retry++;
+        console.log('retrying... ' + retry);
+        return axios.request(error.config);
+    }
+    return Promise.reject(error);
+});
 
 async function debe_scrapper(){
     console.log('debe_scrapper');
 
     // Step 1 -> get debe urls
-    let response = await axios.get(baseURL + '/debe');
+    let response;
+    try {
+        response = await axios.get(baseURL + '/debe', {timeout: 5000});    
+    } catch (error) {
+        console.error('first fetch: '+ JSON.stringify(error));
+        throw error;
+    }
+    
     let $ = cheerio.load(response.data);
 
     let debeURLs = [];
@@ -37,7 +57,7 @@ async function debe_scrapper(){
             entries.push(entry);
             console.log('success ' + entryURL);
        } catch(e){
-           console.log('error ' + entryURL);
+           console.log('error ' + entryURL + '\n' + JSON.stringify(e));
        }
     }
     
