@@ -2,12 +2,13 @@ name: Scrape latest debe data
 
 on:
   schedule:
-    - cron:  '0 5 * * *'
+    - cron:  '30 4 * * *'
   workflow_dispatch:
 
 jobs:
   scheduled:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
+    timeout-minutes: 5
 
     steps:
     - name: Check out this repo
