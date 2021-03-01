@@ -64,7 +64,8 @@ async function debe_scrapper(){
     console.log('entries length: ' + entries.length)
 
     // Step 3 -> write them in a file
-    let fileName = new Date().getDate() + '-' + Number(new Date().getMonth() + 1) + '-' + new Date().getFullYear();
+    // yyyy-mm-dd
+    let fileName = new Date().getFullYear() + '-' + Number(new Date().getMonth() + 1) + '-' + new Date().getDate();
     try {
         await writeJsonFile(fileName, entries);
     } catch (error) {
