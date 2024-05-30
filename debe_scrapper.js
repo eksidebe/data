@@ -79,7 +79,7 @@ async function debe_scrapper(){
 
 function writeJsonFile(fileName, content){
 	return new Promise(function(resolve,reject){
-		fs.writeFile("./data/" + fileName + ".json", JSON.stringify(content), function(err) {
+		fs.writeFile("./data_v2/" + fileName + ".json", JSON.stringify(content), function(err) {
 			if(err) {
                 reject(err.message);
                 return;
