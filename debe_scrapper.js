@@ -32,7 +32,7 @@ async function debe_scrapper(){
     let $ = cheerio.load(response.data);
 
     let debeURLs = [];
-    $('#index-section').each(function () {
+    $('#index-section')[0].each(function () {
         debeURLs.push(baseURL + this.attribs.href);
     });
 
