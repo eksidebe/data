@@ -33,8 +33,8 @@ async function debe_scrapper(){
 
     let debeURLs = [];
     $('#partial-index ul li a').each(function () {
-        //debeURLs.push(baseURL + this.attribs.href);
-	debeURLs.push(this.attribs.href);
+        debeURLs.push(baseURL + this.attribs.href);
+	//debeURLs.push(this.attribs.href);
     });
 
     console.log(debeURLs);
