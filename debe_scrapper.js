@@ -23,7 +23,7 @@ async function debe_scrapper(){
     // Step 1 -> get debe urls
     let response;
     try {
-        response = await axios.get(baseURL + '/debe', {timeout: 5000, headers: {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36' });    
+        response = await axios.get(baseURL + '/debe', {timeout: 5000, headers: {'User-Agent': 'Chrome/113.0.0.0 Safari/537.36' });    
     } catch (error) {
         console.error('first fetch: '+ JSON.stringify(error));
         throw error;
