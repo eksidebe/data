@@ -46,7 +46,7 @@ async function debe_scrapper(){
     for (let i = 0; i< debeURLs.length; i++){
         let entryURL = debeURLs[i];
         try{
-            response = await axios.get(debeURLs[i]);
+            response = await axios.get(debeURLs[i], {timeout:5000, headers:{'User-Agent':'Chrome/113.0.0.0 Safari/537.36'}});
             $ = cheerio.load(response.data);
    
             let title = $('#title').get(0).attribs["data-title"];
